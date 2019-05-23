@@ -31,6 +31,35 @@
                         </div>
                 @endif
             </div>
+            <div class="col-6">
+
+                    <form class="navbar-form navbar-left" action="">
+                  
+                      @csrf
+                  
+                        <div class="row">
+                  
+                            <div class="col-8">
+                  
+                                <div class="form-group">
+                  
+                                    <input type="text" class="form-control" placeholder="Search">
+                  
+                                </div>
+                  
+                            </div>
+                  
+                            <div class="col-4">
+                  
+                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                  
+                            </div>
+                  
+                        </div>
+                  
+                    </form>
+                  
+                  </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -55,15 +84,19 @@
                         <td>{{ $customer->name }}</td>
                         <td>{{ $customer->dob }}</td>
                         <td>{{ $customer->email }}</td>
-                        <td>{{ $customer->city->name }}</td>
+                        <td>{{ $customer->city['name'] }}</td>
                         <td><a href="{{ route('customers.edit', $customer->id) }}">sửa</a></td>
                         <td><a href="{{ route('customers.destroy', $customer->id) }}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">xóa</a></td>
                     </tr>
                     @endforeach
                 @endif
+                <tr>
+                    <td>  <a class="btn btn-primary" href="{{ route('customers.create') }}">Thêm mới</a></td>
+
+                    <td> {{ $customers->appends(request()->query()) }}</td>
+                </tr>
                 </tbody>
             </table>
-            <a class="btn btn-primary" href="{{ route('customers.create') }}">Thêm mới</a>
         </div>
 
         <!-- Modal -->
