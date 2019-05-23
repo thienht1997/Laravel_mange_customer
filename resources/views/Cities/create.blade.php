@@ -8,7 +8,7 @@
                 <h1>Thêm mới tỉnh thành</h1>
             </div>
             <div class="col-12">
-                <form method="post" action="{{ route('cities.store') }}">
+                <form method="post" action="">
                     @csrf
                     <div class="form-group">
                         <label>Tên tỉnh</label>

@@ -55,7 +55,7 @@
                         <td>{{ $customer->name }}</td>
                         <td>{{ $customer->dob }}</td>
                         <td>{{ $customer->email }}</td>
-                        <td>{{$customer->city['name']}}</td>
+                        <td>{{ $customer->city->name }}</td>
                         <td><a href="{{ route('customers.edit', $customer->id) }}">sửa</a></td>
                         <td><a href="{{ route('customers.destroy', $customer->id) }}" class="text-danger" onclick="return confirm('Bạn chắc chắn muốn xóa?')">xóa</a></td>
                     </tr>

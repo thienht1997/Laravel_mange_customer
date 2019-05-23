@@ -30,7 +30,7 @@ class CityController extends Controller
 
     public function create()
     {
-        return view('Cities.create');
+        return view('cities.create');
     }
 
     /**
@@ -39,14 +39,17 @@ class CityController extends Controller
      * @return Response
      */
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $city = new City();
         $city->name     = $request->input('name');
         $city->save();
-       
-        //tao moi xong quay ve trang danh sach khach hang
-        // return redirect()->route('customers.index');
-      }
+
+        //dung session de dua ra thong bao
+        Session::flash('success', 'Tạo mới thành công');
+        //tao moi xong quay ve trang danh sach tinh thanh
+        return redirect()->route('cities.index');
+    }
 
     /**
      * Show the form for editing the specified resource.
