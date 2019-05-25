@@ -2,9 +2,16 @@
 @section('title', 'Thêm mới khách hàng')
 
 @section('content')
+
     <div class="col-12 col-md-12">
         <div class="row">
+            
             <div class="col-12">
+                    @if ($errors->any())
+                    @foreach($errors->all() as $nameError)
+                        <p style="color:red">{{ $nameError }}</p>
+                    @endforeach
+                    @endif
                 <h1>Thêm mới khách hàng</h1>
             </div>
             <div class="col-12">

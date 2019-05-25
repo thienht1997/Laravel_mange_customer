@@ -10,4 +10,11 @@ class Customer extends Model
     {
         return $this->belongsTo('App\City');
     }
+
+    protected $fillable = [
+        'name',
+        'email',
+        'dob',
+        'city_id',
+    ];
 }

@@ -41,10 +41,13 @@ class CityController extends Controller
 
     public function store(Request $request)
     {
-        $city = new City();
-        $city->name     = $request->input('name');
-        $city->save();
-
+        // $city = new City();
+        // $city->name     = $request->input('name');
+        // $city->save();
+        
+    
+        $attribute = $request->all();
+        City::create($attribute);
         //dung session de dua ra thong bao
         Session::flash('success', 'Tạo mới thành công');
         //tao moi xong quay ve trang danh sach tinh thanh
@@ -69,12 +72,12 @@ class CityController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, City $city, $id)
     {
         $city = City::findOrFail($id);
-        $city->name     = $request->input('name');
-        $city->save();
-
+        // $city->name     = $request->input('name');
+        // $city->save();
+        $city->update($request->all());
         //dung session de dua ra thong bao
         Session::flash('success', 'Cập nhật thành công');
         //cap nhat xong quay ve trang danh sach tinh

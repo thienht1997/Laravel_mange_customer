@@ -43,7 +43,7 @@
                 @endif
                 </tbody>
             </table>
-            <a class="btn btn-primary" href="{{ route('cities.create') }}">Thêm mới</a>
+            <a class="btn btn-primary" href="{{ route('cities.create', $city->id) }}">Thêm mới</a>
         </div>
     </div>
 @endsection

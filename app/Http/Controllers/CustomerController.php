@@ -7,6 +7,7 @@ use App\Customer;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -17,13 +18,9 @@ class CustomerController extends Controller
      */
 
     public function index()
-
     {
-
         $customers = Customer::paginate(5);
-
         $cities = City::all();
-
         return view('customers.list', compact('customers', 'cities'));
     }
 
@@ -45,15 +42,16 @@ class CustomerController extends Controller
      * @return Response
      */
 
-    public function store(Request $request)
+    public function store(Request $request1, CustomerRequest $request)
     {
-        $customer = new Customer();
-        $customer->name     = $request->input('name');
-        $customer->email    = $request->input('email');
-        $customer->dob      = $request->input('dob');
-        $customer->city_id  = $request->input('city_id');
-        $customer->save();
-
+        // $customer = new Customer();
+        // $customer->name     = $request->input('name');
+        // $customer->email    = $request->input('email');
+        // $customer->dob      = $request->input('dob');
+        // $customer->city_id  = $request->input('city_id');
+        // $customer->save();
+        
+        Customer::create($request1->all());
         //dung session de dua ra thong bao
         Session::flash('success', 'Tạo mới khách hàng thành công');
         //tao moi xong quay ve trang danh sach khach hang
@@ -130,26 +128,16 @@ class CustomerController extends Controller
     }
 
     public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        if (!$keyword) {
+            return redirect()->route('customers.index');
+        }
+        $customers = Customer::where('name', 'LIKE', '%' . $keyword . '%')
+            ->paginate(5);
 
-{
-
-    $keyword = $request->input('keyword');
-
-    if (!$keyword) {
-
-        return redirect()->route('customers.index');
+        $cities = City::all();
+        return view('customers.list', compact('customers', 'cities'));
 
     }
-
-    $customers = Customer::where('name', 'LIKE', '%' . $keyword . '%')
-
-        ->paginate(5);
-
-
-    $cities = City::all();
-
-    return view('customers.list', compact('customers', 'cities'));
-
-
-}
 }

@@ -5,7 +5,7 @@
     <div class="col-12 col-md-12">
         <div class="row">
             <div class="col-12">
-                <h1>Thêm mới tỉnh thành</h1>
+                <h1>Cập nhật tỉnh thành</h1>
             </div>
             <div class="col-12">
                 <form method="post" action="">

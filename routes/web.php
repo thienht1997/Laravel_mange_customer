@@ -36,6 +36,7 @@ Route::group(['prefix' => 'customers'], function () {
 
     Route::get('/search','CustomerController@search')->name('customers.search');
 
+
 });
 
 //tao group route cties
@@ -48,7 +49,7 @@ Route::group(['prefix' => 'cities'], function () {
 
     Route::get('/{id}/edit','CityController@edit')->name('cities.edit');
 
-    Route::post('/{id}/edit','CityController@store')->name('cities.store');
+    Route::post('/{id}/edit','CityController@update')->name('cities.update');
 
     Route::get('/{id}/delete','CityController@destroy')->name('cities.destroy');
 
